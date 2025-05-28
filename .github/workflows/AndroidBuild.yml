@@ -35,6 +35,9 @@
         - name: checkout the unit test code
           uses: actions/checkout@v2
 
+        - name: Grant execute permission for gradlew
+          run: chmod +x ./gradlew
+
         - name: Run tests
           run: ./gradlew test
 
