@@ -29,7 +29,7 @@
             path: app/build/reports/lint-results-debug.html
 
     unit-test:
-      need: [lint]
+      needs: [lint]
       runs-on: ubuntu-latest
       steps:
         - name: checkout the unit test code
