@@ -16,6 +16,9 @@
         - name: Checkout the code
           uses: actions/checkout@v2
 
+        - name: Grant execute permission for gradlew
+          run: chmod +x ./gradlew
+
         - name: Run Android Lint
           run: ./gradlew lintDebug
 
