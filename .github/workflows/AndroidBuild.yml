@@ -2,28 +2,22 @@
   # Referenec Link : https://medium.com/@KaushalVasava/what-is-ci-cd-how-to-build-ci-cd-pipeline-in-android-using-github-actions-60f69805657b
   name: Android Build
 
-  on :
-    push :
-      branches : [master]
-    pull_request :
-      branches : [master]
+  on:
+    push:
+      branches: [ master ]
+    pull_request:
+      branches: [ master ]
+    workflow_dispatch:
 
-    workflow_dispatch :
+  jobs:
+    lint:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout the code
+          uses: actions/checkout@v2
 
-      # First Job is Link check job, it checks link and gives result.
-
-      jobs :
-       lint :
-        runs-on : ubuntu-latest
-        steps:
-          - name: checkout the code
-            uses: actions/checkout@v2
-
-          - name: upload html test report
-            uses: actions/upload-artifact@v2
-            with:
-              name: lint.html
-              path: app/build/reports/lint-results-debug.html
-
-
-
+        - name: Upload html test report
+          uses: actions/upload-artifact@v2
+          with:
+            name: lint.html
+            path: app/build/reports/lint-results-debug.html
