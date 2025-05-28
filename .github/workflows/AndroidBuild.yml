@@ -10,8 +10,9 @@
 
     workflow_dispatch :
 
+      # First Job is Link check job, it checks link and gives result.
+
       jobs :
-        # First Job is Link check job, it checks link and gives result.
        lint :
         runs-on : ubuntu-latest
         steps:
