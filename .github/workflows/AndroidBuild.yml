@@ -47,7 +47,7 @@
             name: unit_test_report
             path: app/build/reports/tests/testDebugUnitTest/
 
-      instrumentation-test:
+    instrumentation-test:
         needs: [unit-test]
         runs-on: macos-latest
         steps:
