@@ -58,6 +58,9 @@
           uses: reactivecircus/android-emulator-runner@v2
           with:
             api-level: 29
+            target: google_apis
+            arch: x86
+            profile: pixel
             script: ./gradlew connectedCheck
 
         - name: Upload test report
