@@ -54,6 +54,26 @@
             - name: Checkout the code
               uses: actions/checkout@v2
 
+            - name: set up JDK 17
+              uses: actions/setup-java@v3
+              with:
+                distribution: 'temurin'
+                java-version: 17
+
+            - name: Set up Android SDK
+              uses: android-actions/setup-android@v3
+
+            - name: Create AVD and Launch Emulator
+              run: |
+               echo "no" | avdmanager create avd -n test -k "system-images;android-30;google_apis;x86"
+               emulator -avd test -no-window -no-audio -no-boot-anim -camera-back none -camera-front none &
+      
+               # Wait for emulator to boot
+               timeout 5m bash -c 'until adb shell getprop sys.boot_completed | grep -m 1 "1"; do sleep 5; done;'
+               adb shell settings put global window_animation_scale 0
+               adb shell settings put global transition_animation_scale 0
+               adb shell settings put global animator_duration_scale 0
+
             - name: Run espresso test
               uses: reactivecircus/android-emulator-runner@v2
               with:
